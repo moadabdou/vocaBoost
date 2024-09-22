@@ -74,7 +74,7 @@ document.addEventListener( 'selectionchange' , function(){
 })
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  if (request.message.length>1 && isSingleWord(request.message)){
+  if (request.message.length>1){
     floatingpanelstate.setWord(request.message.toLocaleLowerCase()); 
     floatingpanelstate.showPanel()
   }else {

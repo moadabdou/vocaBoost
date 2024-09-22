@@ -1,0 +1,21 @@
+{
+  "name": "vocaboost",
+  "version": "0.1.0",
+  "description": "This Chrome extension allows users to easily save words and their definitions while browsing the web. Users can later export their saved words for use in Anki, a popular flashcard application, to enhance their language learning experience. The extension provides a simple and efficient way to build a personalized vocabulary list, making it easier to review and retain new words.",
+  "private": true,
+  "scripts": {
+    "watch": "node ./node_modules/webpack/bin/webpack.js --mode=development --watch --config config/webpack.config.js",
+    "build": "node ./node_modules/webpack/bin/webpack.js --mode=production --config config/webpack.config.js"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.4.1",
+    "css-loader": "^6.11.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^0.10.1",
+    "size-plugin": "^1.2.0",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-merge": "^5.10.0"
+  }
+}

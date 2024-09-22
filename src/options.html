@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vocaBoost</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;    
+            max-width: 950px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        #wordFilter, #searchBar, button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        #wordFilter, #searchBar {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .controls button:hover {
+            box-shadow: 0 0 15px 0 yellow;
+        }
+
+        .controls button {
+            position: relative;
+            background: linear-gradient(85deg, #FFD700, #8f7c00);
+            color: #000;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: all 0.1s ease-in-out;
+        }
+        button#removeAll::before{
+            content: '';
+            height: 0;
+            width: 0;
+            position: absolute;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid red;
+            right: -10px;
+            top: -3px;
+            transform: rotate(45deg);
+        }
+
+        #lastExportTime {
+            margin: 20px 10px;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #111;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(45deg, #FFD700, #FFDD00);  
+            color: black;
+        }
+
+        thead th {
+            padding: 15px;
+            text-align: left;
+            font-size: 18px;  
+            border: 1px solid;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #333;
+        }
+
+        tbody td {
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        .removeWord {
+            background-color: #ff5555;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .removeWord:hover {
+            background-color: #ff2222;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <select id="wordFilter" >
+                <option value="lastExport">From Last Export</option>
+                <option value="all">All Words</option>
+            </select>
+            <input type="text" id="searchBar" placeholder="Search words...">
+            <button id="exportWords">Export Selected Words</button>
+            <button id="removeAll">Delete All Words</button>
+        </div>
+        <div id="lastExportTime">
+            <p>last  export :  <span>...</span></p>
+        </div>
+        <table id="wordTable">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Word</th>
+                    <th>add time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic word rows will go here -->
+                <tr>
+                    <td><input type="checkbox" class="selectWord"></td>
+                    <td>Sample Word 1</td>
+                    <td>15 hours ago</td>
+                    <td><button class="removeWord">Remove</button></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="selectWord"></td>
+                    <td>Sample Word 2</td>
+                    <td>13 mins ago</td>
+                    <td><button class="removeWord">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="options.js"></script>
+</body>
+</html>

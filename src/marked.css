@@ -1,0 +1,65 @@
+.vocaBoost-floating-panel {
+    font-family: Arial, sans-serif;
+}
+
+.vocaBoost-floating-panel textarea {
+    width: 100%;
+    font-family: monospace;
+}
+
+.vocaBoost-floating-panel #output {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+}
+
+.vocaBoost-floating-panel h1 {
+    color: #333;
+}
+
+.vocaBoost-floating-panel h2 {
+    color: #666;
+}
+
+.vocaBoost-floating-panel p {
+    margin-bottom: 10px;
+}
+
+.vocaBoost-floating-panel strong {
+    font-weight: bold;
+}
+
+.vocaBoost-floating-panel em {
+    font-style: italic;
+}
+
+.vocaBoost-floating-panel code {
+    background-color: #96a24e;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.vocaBoost-floating-panel ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.vocaBoost-floating-panel ol {
+    list-style-type: decimal;
+    margin-left: 20px;
+}
+
+.vocaBoost-floating-panel a {
+    color: #1a0dab;
+    text-decoration: none;
+}
+
+.vocaBoost-floating-panel a:hover {
+    text-decoration: underline;
+}
+
+.vocaBoost-floating-panel .vocaBoost-word-show img{
+    max-width: 400px;
+    display: block;
+}

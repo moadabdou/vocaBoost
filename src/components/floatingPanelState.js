@@ -314,9 +314,7 @@ class floatingPanelState{
 
         // Create a new ResizeObserver instance
         const resizeObserver = new ResizeObserver(entries => {
-            for (let entry of entries) {
-                this.lineNumbers.style.height = entry.target.clientHeight + 'px';
-            }
+            this.lineNumbers.style.height = entries[0].target.clientHeight + 'px';
         });
 
         // Observe the textarea for size changes

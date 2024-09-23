@@ -63,6 +63,7 @@ document.addEventListener( 'selectionchange' , function(){
 
       if (text.length>1 && isSingleWord(text)){
         wrapSelectedText(selection ,rang , text)
+        navigator.clipboard.writeText(text.toLocaleLowerCase())
         floatingpanelstate.setWord(text.toLocaleLowerCase()); 
         floatingpanelstate.showPanel()
       }else {

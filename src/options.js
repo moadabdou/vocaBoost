@@ -17,11 +17,12 @@ function  updateTable(words){
     if  (words){
         words.forEach(word => {
             wordsTable.innerHTML +=  /*html*/ `
-                <tr data-content='${word.content}'>
+                <tr >
                     <td><input type="checkbox" class="selectWord" checked></td>
                     <td>${word.word}</td>
                     <td>${timeAgo(word.ts)}</td>
                     <td><button class="removeWord" data-word="${word.id}">Remove</button></td>
+                    <td id='word-content' style='display:none;'>${word.content}</td>
                 </tr>
             `
         } );
@@ -95,7 +96,7 @@ document.getElementById('exportWords').onclick = function(){
         let text =  ''; 
         Array.from(wordsTable.children).forEach(wordrow  => {
             if (wordrow.children[0].firstElementChild.checked){
-                text += `${wordrow.children[1].textContent}\t${marked(wordrow.getAttribute('data-content')).replace(/[\r\n]+/g, ' ')}\n`;
+                text += `${wordrow.children[1].textContent}\t${marked(wordrow.lastElementChild.innerHTML).replace(/[\r\n]+/g, ' ')}\n`;
             }
         })
         const blob = new Blob([text], { type: 'text/plain' });

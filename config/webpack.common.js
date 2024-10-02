@@ -65,10 +65,14 @@ const common = {
     new HtmlWebpackPlugin({
       template: './src/popup.html',
       filename: 'popup.html', 
+      // without this,  it will  include all  entries in html  file , 
+      inject : false 
     }),
     new HtmlWebpackPlugin({
-      template: './src/options.html', // Your HTML file
+      template: './src/options.html',
       filename: 'options.html', // Output HTML file in build
+      chunks : ['content']// without this,  it will  include all  entries in html  file 
+     
     }),
   ],
 };

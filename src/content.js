@@ -32,18 +32,18 @@ function removeSpan(){
 }
 
 
-//make  selection event work only  when  alt is pressed 
-let  altPressed = false ;
+//make  selection event work only  when  ctrl is pressed 
+let  ctrlPressed = false ;
 
 document.addEventListener('keydown' , function(event){
-  if (event.altKey){
-    altPressed =  true;
+  if (event.ctrlKey){
+    ctrlPressed =  true;
   }
 })
 
 document.addEventListener('keyup' , function(event){
-  if (!event.altKey){
-    altPressed =  false;
+  if (!event.ctrlKey){
+    ctrlPressed =  false;
   }
 })
 
@@ -52,7 +52,7 @@ let  floatingpanelstate =  new floatingPanelState({afterClosing : removeSpan});
 
 //event for selection mainly  for wraping data  and  dragging the floating panele
 document.addEventListener( 'selectionchange' , function(){
-  if (altPressed){
+  if (ctrlPressed){
     let selection =  window.getSelection();
     if (selection.rangeCount){
       let rang = selection.getRangeAt(0);

@@ -12,6 +12,7 @@ const  wordFilter = document.getElementById('wordFilter'),
        wordsTable = document.querySelector('#wordTable tbody');
 
 
+
 function  updateTable(words){
     wordsTable.innerHTML  =  '';    
     if  (words){
@@ -67,11 +68,10 @@ function showLastExport(){
     });
 }
 
-
-window.onload =  ()=> {
+document.addEventListener("DOMContentLoaded", function() {
     fetchWords();
     showLastExport();
-}
+});
 
 wordFilter.onchange = fetchWords;
 

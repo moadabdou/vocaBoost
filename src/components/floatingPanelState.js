@@ -28,6 +28,7 @@ class floatingPanelState{
         //current chosen  word  
         this.currentWord = '' ;
         this.actions = actions;
+        
         //open & close animation
         this.animate =  false;
 
@@ -96,6 +97,12 @@ class floatingPanelState{
         `
         document.body.appendChild(this.floatingPanel)
 
+        //setting up panel props  
+        this.textarea = document.querySelector('.vocaBoost-word-new .new-word-container textarea');
+        this.lineNumbers = document.querySelector('.vocaBoost-word-new .new-word-container .line-numbers');
+        this.positionIndecator = document.querySelector('.vocaBoost-word-new .new-word-container .upload-img-positon');
+        this.dropZone = document.getElementById('vcb-drop-zone');
+
         //updating line numbers 
         this.setUpdateLineNumbers()
 
@@ -120,15 +127,14 @@ class floatingPanelState{
 
         //add new word the  new  word button pressed 
         document.querySelector('.vocaBoost-word-new button').addEventListener('click' ,  (e)=>{
-            this.loader('SHOW');
-            const wordDefintions =  document.querySelector('.vocaBoost-word-new textarea') ;
-            if(wordDefintions.value){
+            if(this.textarea.value){
+                this.loader('HIDE');
                 wordtrasactions.setNewWord({
                     word :  this.currentWord  , 
-                    content : wordDefintions.value
+                    content : this.textarea.value
                 } ,  isWordAdded => {
                     if (isWordAdded){
-                        this.showAwordPage('INFO' ,  wordDefintions.value);
+                        this.showAwordPage('INFO' ,  this.textarea.value);
                     }
                     this.loader('HIDE');
                 });
@@ -194,7 +200,6 @@ class floatingPanelState{
     }
 
     setupDropZoneHandlers(){
-        this.dropZone = document.getElementById('vcb-drop-zone');
 
         document.querySelector('.vcb-dropzone-close').addEventListener('click' , ()=>{
             this.dropZone.classList.add('vcb-hidden');
@@ -303,10 +308,6 @@ class floatingPanelState{
     }
 
     setUpdateLineNumbers (){
-
-        this.textarea = document.querySelector('.vocaBoost-word-new .new-word-container textarea');
-        this.lineNumbers = document.querySelector('.vocaBoost-word-new .new-word-container .line-numbers');
-        this.positionIndecator = document.querySelector('.vocaBoost-word-new .new-word-container .upload-img-positon');
         
         this.textarea.addEventListener('input' , ()=>{
             this.updateLineNumbers();
@@ -343,8 +344,7 @@ class floatingPanelState{
     }
 
     showAwordPage(pageClass , data=false){
-        const  page =  document.querySelector(`.${this.CLASSES[pageClass]}`) , 
-               textarea =  document.querySelector('.vocaBoost-word-new .new-word-container textarea');
+        const  page =  document.querySelector(`.${this.CLASSES[pageClass]}`);
         if (data && pageClass == 'INFO'){
             page.children[0].innerHTML = marked(data)
             this.textarea.value = data;

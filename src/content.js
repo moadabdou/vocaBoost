@@ -33,13 +33,19 @@ function removeSpan(){
 
 
 //make  selection event work only  when  ctrl is pressed 
-let  ctrlPressed = false ;
+let  ctrlPressed = false , 
+     pastEvent =  false  ;
 
 document.addEventListener('keydown' , function(event){
   if (event.ctrlKey){
     ctrlPressed =  true;
   }
+  if (event.ctrlKey && event.key === 'v') {
+    // Prevent the default paste action
+    pastEvent = true ;
+  }
 })
+
 
 document.addEventListener('keyup' , function(event){
   if (!event.ctrlKey){
@@ -52,7 +58,7 @@ let  floatingpanelstate =  new floatingPanelState({afterClosing : removeSpan});
 
 //event for selection mainly  for wraping data  and  dragging the floating panele
 document.addEventListener( 'selectionchange' , function(){
-  if (ctrlPressed){
+  if (ctrlPressed && !pastEvent){
     let selection =  window.getSelection();
     if (selection.rangeCount){
       let rang = selection.getRangeAt(0);
@@ -71,6 +77,8 @@ document.addEventListener( 'selectionchange' , function(){
         console.log('false' , text) //to  set  an alert saying that this not a word 
       }
     }
+  }else{
+    pastEvent = false;
   }
 })
 

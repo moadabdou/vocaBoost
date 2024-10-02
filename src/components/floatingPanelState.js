@@ -149,9 +149,6 @@ class floatingPanelState{
         //close the  panel 
         document.querySelector('.vocaBoost-word-info .vcb-close').addEventListener('click' , e=>{
             this.hidePanel();
-            if (this.actions.afterClosing){
-                this.actions.afterClosing();
-            }
         })
     }
 
@@ -366,6 +363,9 @@ class floatingPanelState{
     }
     hidePanel(){
         this.floatingPanel.classList.add('hidden');
+        if (this.actions.afterClosing){
+            this.actions.afterClosing();
+        }
     }
 
     loader(action){

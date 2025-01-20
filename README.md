@@ -10,3 +10,16 @@
 - Custom Definitions: Effortlessly add your preferred definitions, leveraging the power of LLMs for enhanced clarity and context.
 - User Dashboard: Manage your vocabulary list with an intuitive dashboard that allows for easy organization and tracking.
 - Anki Export: Seamlessly export your saved words to Anki, facilitating efficient review and retention.
+
+## updates 
+
+- **version 1.1.0** : [NEW FEATURE] you  can generate  word  directly from  the exstension using an LLM 
+ > for now  it supports  gemini only (because it has a free  API),  for this task  gemini is more  than enough
+ > you can add your api  to  the tool  throught the option page
+ > more LLMs  will be  added  in the  future 
+
+## futur features 
+- calculate number of  word in the options  page 
+- maybe adding when using the search, getting the similar words .
+- making  the  drag  and drop  work also  without choosing the  line, by  adding the img directly to  the end. 
+- image resolution  decrease to save space on anki 

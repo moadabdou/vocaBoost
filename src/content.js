@@ -73,7 +73,6 @@ document.addEventListener( 'selectionchange' , function(){
         floatingpanelstate.setWord(text.toLocaleLowerCase()); 
         floatingpanelstate.showPanel()
       }else {
-        floatingpanelstate.hidePanel()
         console.log('false' , text) //to  set  an alert saying that this not a word 
       }
     }

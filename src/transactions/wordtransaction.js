@@ -1,4 +1,7 @@
 import vcbLogging from "../helpers/logging";
+
+
+
 const vcblog = new vcbLogging();
 
 class wordTransactions  {
@@ -43,16 +46,26 @@ class wordTransactions  {
     }
 
     delete (wordId= null ,  callback){
-        vcblog.log('[vocaBoost] :' ,  'sending message to empty db');
+        vcblog.log('sending message to empty db');
         chrome.runtime.sendMessage({
             action : 'DELETE',
             wordId
         },  response => {
-            callback();
-            vcblog.log( '[vocaBoost] :' ,response);
+            callback(response);
+            vcblog.log(response);
         });
     }
 
+    generate(word,  callback){
+        vcblog.log("generating  defintion for " +word);
+        chrome.runtime.sendMessage({
+            action : 'GENERATE',
+            word
+        },  response => {
+            
+            callback(response);
+        });
+    }
 
 }
 

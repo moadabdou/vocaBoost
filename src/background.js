@@ -1,3 +1,24 @@
+import Models from './ai/models'
+import getUserConfigs from './ai/userConfs';
+
+
+async function generateDefintion(word){
+  return new Promise((resolve, reject)=>{
+    getUserConfigs(async confs=>{
+       const  model =  Models[confs.model]
+       if (!model){
+          resolve("no model is in use or unsupported model : go to option page and click use to use a model from  the available models there :) ")
+       }else if(!confs.API){
+          resolve("no  API found for the used model please obtain an  API and go to the option  page ")
+       }else {  
+          const  response =  await model(confs.API, confs.example,  word)
+          resolve( response )
+       }
+    })
+  })
+}
+
+
 // Function to convert image URL to Base64
 async function convertImageToBase64(imageUrl) {
   try {
@@ -242,6 +263,8 @@ function  deleteDB(){
     }
   })
 }
+
+
 function deleteWord(wordId){
   return new Promise((resolve,  reject)=> {
     const request = indexedDB.open('wordList', 1);
@@ -269,8 +292,10 @@ function deleteWord(wordId){
 
 }
 
+
 //message handeling 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+
   if (message.action === 'convertToBase64') {
     convertImageToBase64(message.imageUrl).then(base64Image => {
       sendResponse({ base64Image });
@@ -294,13 +319,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }else if (message.action ==  'DELETE'){
     if (message.wordId){
       deleteWord(message.wordId).then(res => {
-        sendResponse(res);
+        sendResponse(res)
       });
     }else {
       deleteDB().then(res => {
-        sendResponse(res);
+        sendResponse(res)
       })
     }
+  }else if (message.action ==  'GENERATE'){
+    generateDefintion(message.word).then(res => {
+      sendResponse(res)
+    })
   }
 
   return true;

@@ -15,7 +15,6 @@
     left: 30px;
     z-index: 99999;
     text-align: center;
-    direction: ltr;
 }
 .vocaBoost-floating-panel  h3 {
     padding: 0 ;
@@ -35,8 +34,6 @@
     border: 2px solid yellow;
     display: block;
     color: white;
-    height: 40px;
-    padding: 5px 20px;
     cursor: pointer;
 }
 .vocaBoost-container {
@@ -46,9 +43,6 @@
 .vocaBoost-container h3 {
     color: white;
     font-size: 22px;
-}
-.vocaBoost-word-show {
-    box-sizing: content-box;
 }
 
 .vocaBoost-word-info > div  {
@@ -80,7 +74,6 @@
 }
 
 .vocaBoost-word-info {
-    position: relative;
     background-color: #e7e7e7;
     color: black;
     padding: 10px;
@@ -93,12 +86,12 @@
     color: black;
     font-size: 24px;
 }
-.vocaBoost-word-noinfo span,.vocaBoost-word-new p span {
+.vocaBoost-word-noinfo span {
     background: black;
     color: white;
     padding: 5px 10px;
     border-radius: 10px;
-    margin:0 5px;
+    margin-left: 5px;
     cursor: pointer;
 }
 .vocaBoost-word-show  {
@@ -107,7 +100,6 @@
     max-height: 400px;
     position: relative;
     padding-bottom:45px ;
-    box-sizing: content-box;
 }
 .vocaBoost-word-show .word-infos{
     overflow-y: auto;
@@ -153,14 +145,13 @@
     resize: both;
     min-width: 500px;
     min-height: 200px;
+    flex-grow: 1;
     font-family: monospace;
     line-height: 1.5em;
-    padding: 5px;
-    background-color: #333;
-    color: aliceblue;
 }
 
 .vocaBoost-word-new .line-numbers {
+    width: 30px;
     background-color: #f0f0f0;
     text-align: right;
     padding-right: 5px;
@@ -171,10 +162,10 @@
     overflow-x: visible;
 }
 .vocaBoost-word-new .line-numbers::-webkit-scrollbar {
-  display: none !important; /* Chrome, Safari, Edge */
+  display: none; /* Chrome, Safari, Edge */
 }
 .vocaBoost-word-new .line-numbers span {
-    display: block;
+    display: inline-block;
     line-height: 1.5em;
     cursor: pointer;
     background: black;
@@ -217,9 +208,7 @@
     border-color: #333;
 }
 
-.vocaBoost-floating-panel .vcb-dropzone-close ,
-.vocaBoost-floating-panel .vcb-close
-{
+.vocaBoost-floating-panel .vcb-dropzone-close {
     position: absolute;
     width: 20px;
     height: 20px;
@@ -227,13 +216,8 @@
     right: -10px;
     top: -10px;
     border-radius: 20px;
-    cursor: pointer;
 }
-.vocaBoost-floating-panel .vcb-dropzone-close::before ,
-.vocaBoost-floating-panel  .vcb-dropzone-close::after , 
-.vocaBoost-floating-panel .vcb-close::before ,
-.vocaBoost-floating-panel  .vcb-close::after 
-{
+.vcb-dropzone-close::before , .vcb-dropzone-close::after {
     position: absolute;
     display: inline-block;
     left: 50%;
@@ -245,43 +229,74 @@
     transform: translate(-50%, -50%) rotate(-50deg);
 }
 
-.vocaBoost-floating-panel  .vcb-dropzone-close::after,
-.vocaBoost-floating-panel  .vcb-close::after {
+.vcb-dropzone-close::after {
     transform: translate(-50%, -50%) rotate(50deg);
 }
   
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
 
-/* loader  */
-.vocaBoost-floating-panel .vcb-loading-cover.show-loader{
-    display: block !important;
-}
-.vocaBoost-floating-panel .vcb-loading-cover{
-    position: absolute;
-    left: 0;
-    top: 0;
+.vocaBoost-floating-panel textarea {
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .5);
-    z-index: 1000000;
+    font-family: monospace;
 }
-.vocaBoost-floating-panel .vcb-loader {
-    width: 45px;
-    aspect-ratio: .8;
-    --c:no-repeat repeating-linear-gradient(90deg,#fbff00 0 20%,#ffffff00 0 40%);
-    background: var(--c),var(--c),var(--c),var(--c);
-    background-size: 100% 21%;
-    animation: l24 .75s infinite alternate;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  @keyframes l24 {
-   0%,
-   10% {background-position:0 calc(0*100%/4),0 calc(1*100%/4),0 calc(2*100%/4),0 calc(3*100%/4)}
-   25% {background-position:0 calc(0*100%/4),0 calc(1*100%/4),0 calc(2*100%/4),0 calc(4*100%/4)}
-   50% {background-position:0 calc(0*100%/4),0 calc(1*100%/4),0 calc(3*100%/4),0 calc(4*100%/4)}
-   75% {background-position:0 calc(0*100%/4),0 calc(2*100%/4),0 calc(3*100%/4),0 calc(4*100%/4)}
-   90%,
-   100%{background-position:0 calc(1*100%/4),0 calc(2*100%/4),0 calc(3*100%/4),0 calc(4*100%/4)}
-  }
+
+.vocaBoost-floating-panel #output {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+}
+
+.vocaBoost-floating-panel h1 {
+    color: #333;
+}
+
+.vocaBoost-floating-panel h2 {
+    color: #666;
+}
+
+.vocaBoost-floating-panel p {
+    margin-bottom: 10px;
+}
+
+.vocaBoost-floating-panel strong {
+    font-weight: bold;
+}
+
+.vocaBoost-floating-panel em {
+    font-style: italic;
+}
+
+.vocaBoost-floating-panel code {
+    background-color: #96a24e;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.vocaBoost-floating-panel ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.vocaBoost-floating-panel ol {
+    list-style-type: decimal;
+    margin-left: 20px;
+}
+
+.vocaBoost-floating-panel a {
+    color: #1a0dab;
+    text-decoration: none;
+}
+
+.vocaBoost-floating-panel a:hover {
+    text-decoration: underline;
+}
+
+.vocaBoost-floating-panel .vocaBoost-word-show img{
+    max-width: 400px;
+    display: block;
+}
+

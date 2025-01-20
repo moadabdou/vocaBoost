@@ -2,6 +2,9 @@ import {marked} from '../tools/marked.min';
 import wordTransactions from '../transactions/wordtransaction';
 import vcbLogging from '../helpers/logging';
 
+
+
+
 //https://forums.ankiweb.net/t/an-info-tip-regarding-recommended-button-usage/39834
 
 const wordtrasactions = new  wordTransactions();
@@ -77,6 +80,7 @@ class floatingPanelState{
                         <h3>add this word : </h3>
                         <p>When adding word definitions, please write them using Markdown syntax.
                         If you're unsure how to format your definition, you can ask an AI tool like ChatGPT to generate the Markdown for you. </p>
+                        <p>or  click <span class='generate'>generate</span> to automaticly generate a defintion </p>
                         <div class="new-word-container">
                             <div class="vcb-drop-zone vcb-hidden" id="vcb-drop-zone">
                                 <div class="vcb-dropzone-close"></div>
@@ -124,6 +128,18 @@ class floatingPanelState{
             wordDefintions.value = '';
             this.showAwordPage('NEWINFO');
         })
+
+        //generate a  defintion 
+        document.querySelector('.vocaBoost-word-new span.generate').addEventListener('click' , e=>{
+            this.loader("SHOW")
+            wordtrasactions.generate(this.currentWord , res => {
+                this.textarea.value  = res
+                this.updateLineNumbers()
+                this.loader("HIDE")
+            })
+
+        })
+
 
         //add new word the  new  word button pressed 
         document.querySelector('.vocaBoost-word-new button').addEventListener('click' ,  (e)=>{
@@ -210,14 +226,14 @@ class floatingPanelState{
             this.dropZone.classList.remove('dragover');
         });
 
-        this.dropZone.addEventListener('click' ,  (e)=> {
+        this.dropZone.lastElementChild.addEventListener('click' ,  (e)=> {
             const inputElement = document.createElement('input');
             inputElement.type = 'file'; 
             inputElement.onchange = (event)=> {
-                this.dropZone.classList.remove('dragover');  
-                this.loader('SHOW');
                 const files = event.target.files;
                 if (files.length > 0 && files[0].type.startsWith('image/')) {
+                    this.dropZone.classList.remove('dragover');  
+                    this.loader('SHOW');
                     const file = files[0];
                     const reader = new FileReader();
     
@@ -225,6 +241,8 @@ class floatingPanelState{
                         this.handelImage(event.target.result)
                     };
                     reader.readAsDataURL(file);
+                }else {
+                    alert('this was unvalid  image !');
                 }
             };
             inputElement.click(); // This opens the file picker

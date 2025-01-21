@@ -22,7 +22,8 @@
     "tabs",
     "scripting",
     "storage",
-    "clipboardWrite"
+    "clipboardWrite",
+    "windows"
   ],
   "content_scripts": [
     {

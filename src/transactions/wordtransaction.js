@@ -66,6 +66,24 @@ class wordTransactions  {
             callback(response);
         });
     }
+    openGoogleImages(word,  callback){
+        vcblog.log("opening google window for" +word);
+        chrome.runtime.sendMessage({
+            action : 'GOOGLEIMAGES',
+            word
+        },  response => {
+            callback(response);
+        });
+    }
+    closeGoogleImages(window,  callback){
+        vcblog.log("closing google window" );
+        chrome.runtime.sendMessage({
+            action : 'CLOSEGOOGLEIMAGES',
+            window
+        },  response => {
+            callback(response);
+        });
+    }
 
 }
 

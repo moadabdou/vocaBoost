@@ -16,10 +16,12 @@
 - **version 1.1.0** : [NEW FEATURE] you  can generate  word  directly from  the exstension using an LLM 
  > for now  it supports  gemini only (because it has a free  API),  for this task  gemini is more  than enough
  > you can add your api  to  the tool  throught the option page
- > more LLMs  will be  added  in the  future 
-
+ > more LLMs  will be  added  in the  future
+- **version 1.2.0** : [NEW FEATURE (undertesting)] now you  can add  images to  your defintion directly from the extension 
+ > you  can just click the new "here" button in  section of adding new image and it will open a small pop up window in google image, you  choose the image then drag drop it to the defintion. 
 ## futur features 
 - calculate number of  word in the options  page 
 - maybe adding when using the search, getting the similar words .
 - making  the  drag  and drop  work also  without choosing the  line, by  adding the img directly to  the end. 
-- image resolution  decrease to save space on anki 
+- image resolution  decrease to save space on anki.
+- other features that will  primerly focus on minimizing the effort to `escalate` your vocabulary.

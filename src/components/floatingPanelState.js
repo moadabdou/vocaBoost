@@ -57,6 +57,8 @@ class floatingPanelState{
             NEWINFO : 'vocaBoost-word-new '
         }
 
+        //google images
+        this.gooleImages = null;
 
 
 
@@ -84,7 +86,10 @@ class floatingPanelState{
                         <div class="new-word-container">
                             <div class="vcb-drop-zone vcb-hidden" id="vcb-drop-zone">
                                 <div class="vcb-dropzone-close"></div>
-                                <p>Drag & Drop your picture here (click if want to upload  from device) <br> [!] avoid large file to  maintain efficiency </p>
+                                <div class="notes">
+                                    <p>Drag & Drop your picture here (click if want to upload  from device) <br> [!] avoid large file to  maintain efficiency </p>
+                                    <p> or  click <span class="google-images">here</span> to get an image from google</p>
+                                </div>
                             </div>               
                             <div class="upload-img-positon"></div>
                             <div class="line-numbers" id="line-numbers" title= 'choose a  line to insert an image'></div>
@@ -140,6 +145,12 @@ class floatingPanelState{
 
         })
 
+        //google  images  
+        document.querySelector('.google-images').addEventListener('click' , e=>{
+            this.closeFloatingSearchWindow()
+            e.stopPropagation()
+            this.openFloatingSearchWindow(this.currentWord)
+        })
 
         //add new word the  new  word button pressed 
         document.querySelector('.vocaBoost-word-new button').addEventListener('click' ,  (e)=>{
@@ -216,6 +227,7 @@ class floatingPanelState{
 
         document.querySelector('.vcb-dropzone-close').addEventListener('click' , ()=>{
             this.dropZone.classList.add('vcb-hidden');
+            this.closeFloatingSearchWindow(this.gooleImages)
         })
         this.dropZone.addEventListener('dragover', (e) => {
             e.preventDefault();  // Prevent default behavior (prevent file from being opened)
@@ -248,6 +260,7 @@ class floatingPanelState{
             inputElement.click(); // This opens the file picker
         }) 
         this.dropZone.addEventListener('drop', (e) => {
+            this.closeFloatingSearchWindow();
             e.preventDefault();
             this.dropZone.classList.remove('dragover');  
             this.loader('SHOW');
@@ -291,7 +304,7 @@ class floatingPanelState{
 
 
     setupImageUploadingPosition (){
-        const lineSpans          = document.querySelectorAll('.vocaBoost-word-new .new-word-container span'),
+        const lineSpans          = document.querySelectorAll('.vocaBoost-word-new .new-word-container .line-numbers span'),
               linesContainer     = document.querySelector('.vocaBoost-word-new .new-word-container');
 
         lineSpans.forEach(lineSpan => {
@@ -396,7 +409,20 @@ class floatingPanelState{
         }
     }
 
+    openFloatingSearchWindow(searchTerm) {
     
+        // Encode the search term to safely use it in the URL
+        wordtrasactions.openGoogleImages(searchTerm, window=>{
+            this.gooleImages =  window
+        })
+        
+    
+    }
+
+    closeFloatingSearchWindow(){
+        vcblog.log(this.gooleImages ?  this.gooleImages.id :  false)
+        wordtrasactions.closeGoogleImages(this.gooleImages)
+    }   
 
 }
 

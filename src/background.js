@@ -2,6 +2,29 @@ import Models from './ai/models'
 import getUserConfigs from './ai/userConfs';
 
 
+function openGoogleImages(word, callback){
+  const encodedSearchTerm = encodeURIComponent(word);
+  chrome.windows.create({
+      url: `https://www.google.com/search?hl=en&tbm=isch&q=${encodedSearchTerm}`,
+      type: "popup",  // Popup window type
+      width: 600,
+      height: 600,
+      left: 100, // Position on screen
+      top: 100  // Position on screen
+  }, (window) => {
+     callback(window)
+  });
+}
+
+function closeGoogleImages(window, callback){
+  if (window && window.id){
+    chrome.windows.remove(window.id);
+    callback(true)
+  }else {
+    callback(false)
+  }
+}
+
 async function generateDefintion(word){
   return new Promise((resolve, reject)=>{
     getUserConfigs(async confs=>{
@@ -329,6 +352,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }else if (message.action ==  'GENERATE'){
     generateDefintion(message.word).then(res => {
       sendResponse(res)
+    })
+  }else if(message.action == "GOOGLEIMAGES") {
+    openGoogleImages(message.word, window => {
+        sendResponse(window)
+    })
+  }else if (message.action == "CLOSEGOOGLEIMAGES"){
+    closeGoogleImages(message.window , res => {
+       sendResponse(res)
     })
   }
 

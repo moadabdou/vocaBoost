@@ -181,7 +181,7 @@ function handleUseModelButton(event) {
 function createModelElement(modelName, useText, apiKey) {
     // Create the model element from the string template
     const div = document.createElement('div');
-    div.innerHTML = `
+    div.innerHTML = /*html*/ `
       <div class="model">
         <div class="model-header">
           <span class="model-name">${modelName}</span>

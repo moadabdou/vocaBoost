@@ -82,11 +82,12 @@ document.addEventListener( 'selectionchange' , function(){
 })
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  if (request.message.length>1){
+  if (request.message && request.message.length>1){
     floatingpanelstate.setWord(request.message.toLocaleLowerCase()); 
     floatingpanelstate.showPanel()
   }else {
     floatingpanelstate.hidePanel()
     console.log('false' , request.message) //to  set  an alert saying that this not a word 
   }
+  return true
 });

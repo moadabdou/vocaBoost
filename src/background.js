@@ -2,6 +2,16 @@ import Models from './ai/models'
 import getUserConfigs from './ai/userConfs';
 
 
+//see defintion of the word by  context menu 
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId === "SEE_DEF") {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+      chrome.tabs.sendMessage(tabs[0].id, {message: info.selectionText});  
+    });
+  }
+});
+
+
 function openGoogleImages(word, callback){
   const encodedSearchTerm = encodeURIComponent(word);
   chrome.windows.create({
@@ -199,6 +209,14 @@ chrome.runtime.onInstalled.addListener(function (details) {
     // Extension updated
     console.log('Extension updated');
   }
+
+  //contextMenus
+  chrome.contextMenus.create({
+    id: "SEE_DEF",
+    title: "definition",
+    contexts: ["selection"], 
+  });
+
 });
 
 

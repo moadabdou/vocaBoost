@@ -7,4 +7,8 @@
 # misc
 .DS_Store
 
+
+vocaBoost.crx
+vocaBoost.pem
+
 npm-debug.log*

@@ -23,7 +23,8 @@
     "scripting",
     "storage",
     "clipboardWrite",
-    "windows"
+    "windows",
+    "contextMenus"
   ],
   "content_scripts": [
     {

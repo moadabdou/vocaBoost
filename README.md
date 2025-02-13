@@ -19,6 +19,8 @@
  > more LLMs  will be  added  in the  future
 - **version 1.2.0** : [NEW FEATURE (undertesting)] now you  can add  images to  your defintion directly from the extension 
  > you  can just click the new "here" button in  section of adding new image and it will open a small pop up window in google image, you  choose the image then drag drop it to the defintion. 
+- **version 1.2.1** : [NEW FEATURE (undertesting)] instead  of CTRL+Double click on a  word to  trigger the dialog, you  can select it and click  right  and click "defintion" where  VB icon.
+ > this is usefull when selecting  with double click  is not triggering the dialog (i.e PDFs). 
 ## futur features 
 - calculate number of  word in the options  page 
 - maybe adding when using the search, getting the similar words .
